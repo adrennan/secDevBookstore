@@ -158,7 +158,7 @@ public class DbManager {
 		return rs;
 	}
 	
-	public void addBook(int ISBN, String name, int price, int quant) throws SQLException {
+	public void addBook(int ISBN, String name, int price, int quant) throws SQLException { // Adds a book, taking parameters for ISBN, name, price, and quantity
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement("INSERT INTO Book (ISBN, Name, Price, Quantity) VALUES (?,?,?,?);");
@@ -176,7 +176,7 @@ public class DbManager {
 		System.out.println("New record inserted into Book.");
 	}
 	
-	public void addUser(String uname, String pass, String email, String addr, int cc) throws SQLException {
+	public void addUser(String uname, String pass, String email, String addr, int cc) throws SQLException { // Adds a user, taking parameters for username, password, email, address, and credit card #
 		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Accounts (Username, Password, Email, Address, CreditCard) VALUES (?,?,?,?,?);");
 		stmt.setString(1, uname);
 		stmt.setString(2, pass);
@@ -188,7 +188,7 @@ public class DbManager {
 		System.out.println("New record inserted into Account.");
 	}
 	
-	public void addTransaction(String uname, int amt) throws SQLException {
+	public void addTransaction(String uname, int amt) throws SQLException { // Adds a transaction, taking username and amount as parameters
 		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Transaction (Username, Amount) VALUES (?,?);");
 		stmt.setString(1, uname);
 		stmt.setInt(2, amt);
