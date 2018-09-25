@@ -17,7 +17,7 @@ public class DbManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	} //
 	
 	private Connection getConnection() {
 		try {
