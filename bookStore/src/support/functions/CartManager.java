@@ -1,10 +1,10 @@
-package support.functions;
+package support.functions
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-import bookStore.DbManager;
+import asd.DbManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -140,11 +140,9 @@ public class CartManager{
 		//Method to get the price from the DB for a particular item, will make a call to the DbManager class when it is 
 		//completed.
 		try {
-			System.out.println("1");
+
 			DbManager db = new DbManager();
-			System.out.println("2");
 			ResultSet query = db.getBookInfo(bookID);
-			System.out.println("3");
 			
 			query.first();
 			return query.getInt("Price");	
