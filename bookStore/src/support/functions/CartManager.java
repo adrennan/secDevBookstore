@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-import asd.DbManager;
+import bookStore.DbManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -79,12 +79,30 @@ public class CartManager{
 		
 		while(keyIterator.hasNext()){
 			tempKey = keyIterator.next();
-			cartInfo += getItemName(tempKey) + " - $" + getItemPrice(tempKey) + "   Quantity : " + cart.get(tempKey) + 
-					"   Extended Price : $" + (getItemPrice(tempKey) * cart.get(tempKey)) + "<br>"; 
+			cartInfo += getItemName(tempKey) + " - $" + getItemPrice(tempKey) + "0   Quantity : " + cart.get(tempKey) + 
+					"   Extended Price : $" + (getItemPrice(tempKey) * cart.get(tempKey)) + "0<br>"; 
 		}
 		
 		cartInfo += "\nTotal - $" + getCartTotal();
 		return cartInfo;
+	}
+	
+	public int[] getBooksIDList() {
+		int[] books = new int[cart.size()];
+		Set<Integer> keys = cart.keySet();
+		Iterator<Integer> keyIterator = keys.iterator();
+		int tempKey = 0;
+		int i = 0;
+		while(keyIterator.hasNext()){
+			tempKey = keyIterator.next();
+			books[i] = tempKey;
+		}
+		
+		return books;
+	}
+	
+	public int getQty(int bookID) {
+		return cart.get(bookID);
 	}
 	
 	public double getCartTotal() {
@@ -140,9 +158,11 @@ public class CartManager{
 		//Method to get the price from the DB for a particular item, will make a call to the DbManager class when it is 
 		//completed.
 		try {
-
+			System.out.println("1");
 			DbManager db = new DbManager();
+			System.out.println("2");
 			ResultSet query = db.getBookInfo(bookID);
+			System.out.println("3");
 			
 			query.first();
 			return query.getInt("Price");	

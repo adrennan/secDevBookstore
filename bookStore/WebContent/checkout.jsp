@@ -7,8 +7,28 @@
 <title>Dining Philosophers Bookstore | Checkout</title>
 </head>
 <body>
-<form action="Confirm">
-
+	<h2>Please verify your order</h2>
+	
+	<%
+		out.println("<p>Account - " + session.getAttribute("user") + "</p>");
+		support.functions.CartManager cart = (support.functions.CartManager) session.getAttribute("cart");
+		if(cart != null){
+			out.println("<form action=\"confirm.jsp\"");
+			
+			out.println(cart.getCartInfo());
+			
+			out.println("<br><input type=\"submit\" value=\"Confirm Order\">");
+			out.println("<p>You will be sent an emailed copy of your reciept at " + session.getAttribute("email") + "</p>");
+		}
+		else{
+			out.println("<p>Cart is Empty</p>");
+			out.println("<p> You need to Order something still!</p>");
+		}
+			
+		
+	%>
+		<a href = "bookPage.jsp"><button>Back to Books</button></a><br>
+		<a href = "index.jsp"><button>Log out</button></a>
 </form>
 </body>
 </html>
