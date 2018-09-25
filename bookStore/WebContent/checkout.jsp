@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Change this shit later Bookstore | Checkout</title>
+<title>Dining Philosophers Bookstore | Checkout</title>
 </head>
 <body>
+<form action="Confirm">
 
+</form>
 </body>
 </html>

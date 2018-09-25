@@ -9,7 +9,7 @@
 <body>
 	<header>
 		<img src="http://placehold.it/280x80" alt="company logo">
-		<h1>Register | Change this shit later Bookstore</h1>
+		<h1>Register | Dining Philosophers Bookstore</h1>
 	</header>
 	<form action="index.jsp" method="POST">
 		<input type="email" placeholder="email address"><br>
