@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>Dining Philosophers Bookstore</title>
 </head>
 <body>
@@ -17,8 +16,12 @@
 		<h4>Check out our books</h4>
 	</header>
 	<hr>
-	
+		<a href="checkout.jsp">
+		<img src="http://www.clker.com/cliparts/1/2/x/X/a/Q/simple-gray-checkout-button-hi.png" height="80px">
+		</a>		
+	<hr>
 	<%
+	
 	bookStore.DbManager db = new bookStore.DbManager();
 	
 	ResultSet bookList = db.getBookList();
@@ -42,13 +45,12 @@
 		price = bookList.getInt("Price");
 		bookID = bookList.getInt("BookID");
 		out.println("<h4>"+ bookList.getString("Name") + "</h4>");
-		
 		out.println("<p>Price - $" + price + ".00</p>");
 		out.println("<p>Quantity Available - " + qtyAvl +" </p>");
 		out.println("Add : ");
-		out.println("<form action=\"add\" method = \"POST\"><select name=\"Quantity\">");
+		out.println("<form action=\"CartUpdate.jsp\" method = \"POST\"><select name=\"Quantity\">");
 		for(int i = 0; i < qtyAvl; i++){
-			out.println("<option>"+ (i) + "</option>");
+			out.println("<option>"+ (i + 1) + "</option>");
 		}
 		out.println("       </select>");
 		out.println("<input type=\"hidden\" name=\"bookID\" value =\"" + bookID + "\"/>");
@@ -69,6 +71,7 @@
 	
 	
 	</table>
+
 
 </body>
 </html>
