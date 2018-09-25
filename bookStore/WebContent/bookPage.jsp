@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Dining Philosophers Bookstore</title>
 </head>
 <body>
@@ -68,7 +69,6 @@
 	
 	
 	</table>
-
 
 </body>
 </html>

@@ -39,13 +39,7 @@
 	<%	
 		//Shouldnt do this in the jsp - change later
 		DbManager db = new DbManager();
-		Connection conn = db.getConnection();
-		if(conn == null){
-			out.print("Connection failed");
-		}
-		else{
-			out.print("Connection successful");
-		}
+	
 				
 		
 		//STEP 4: Execute a query
