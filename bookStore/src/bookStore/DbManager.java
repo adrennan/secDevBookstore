@@ -13,6 +13,7 @@ public class DbManager {
 		this.conn = getConnection();
 		try {
 			initializeDB(conn);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -63,13 +64,31 @@ public class DbManager {
 		Statement stmt1 = conn.createStatement();
 		Statement stmt2 = conn.createStatement();
 		Statement stmt3 = conn.createStatement();
-		stmt1.execute(createBooks);
+		stmt1.execute(createBooks);	
 		stmt2.execute(createAccount);
 		stmt3.execute(createTransactions);
 	}
 	
 	public ResultSet getBookInfo (int bookID) {	// returns the specified row, keyed by BookID, (with ISBN, Price, Quantity) in Book as a resultset
 		String sql = "SELECT * FROM Book WHERE BookID =" + bookID +";";
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ResultSet rs = null;
+		try {
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public ResultSet getBookList () {	// returns all books, (with ISBN, Price, Quantity) in Book as a resultset
+		String sql = "SELECT * FROM Book;";
 		Statement stmt = null;
 		try {
 			stmt = conn.createStatement();
@@ -102,6 +121,21 @@ public class DbManager {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+	
+	public void updateBookQty(int bookID, int newQuantity) {
+		String sql = "UPDATE `bookstore`.`book` SET `Quantity` = '" + newQuantity + "' WHERE (`BookID` = '" + bookID +"')";
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(sql);
+			//stmt.setInt(4, newQuantity);
+			
+			stmt.executeUpdate();
+			System.out.println("New record inserted into Book.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public ResultSet getTransactionInfo(int transactionID) { // returns as a ResultSet the specified row, keyed by TransactionID, (with Username and Amount) in Transactions
@@ -189,11 +223,11 @@ public class DbManager {
 	}
 	
 	public void addTransaction(String uname, int amt) throws SQLException { // Adds a transaction, taking username and amount as parameters
-		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Transaction (Username, Amount) VALUES (?,?);");
+		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Transactions (Username, Amount) VALUES (?,?);");
 		stmt.setString(1, uname);
 		stmt.setInt(2, amt);
 		
-		stmt.executeQuery();
+		stmt.executeUpdate();
 		System.out.println("New record inserted into Transactions.");
 	}
 	
