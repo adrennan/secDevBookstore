@@ -15,6 +15,9 @@
 		<input type="email" placeholder="email address"><br>
 		<input type="text" placeholder="username"><br>
 		<input type="password" placeholder="password"><br>
+		<input type="number" placeholder="Credit Card Number"><br>
+		<input type="text" placeholder="Address" ><br>
+		
 		<br>
 		<input type="submit" value="login">
 		
