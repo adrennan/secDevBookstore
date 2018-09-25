@@ -17,6 +17,7 @@ public class DbManager {
 			e.printStackTrace();
 		}
 	}
+
 	
 	private Connection getConnection() {
 		try {
@@ -35,7 +36,8 @@ public class DbManager {
 	}
 	
 	private void initializeDB(Connection conn) throws SQLException { // invoked as part of constructor, don't worry about this (unless it breaks...)
-		String createAccount = "CREATE TABLE Account IF NOT EXISTS\r\n" + 
+
+		String createAccount = "CREATE TABLE IF NOT EXISTS Account\r\n" + 
 				"(\r\n" + 
 				"    Username VARCHAR(50) PRIMARY KEY NOT NULL,\r\n" + 
 				"    Password VARCHAR(50) NOT NULL,\r\n" + 
@@ -43,14 +45,14 @@ public class DbManager {
 				"    Address VARCHAR(200) NOT NULL,\r\n" + 
 				"    CreditCard int NOT NULL\r\n" + 
 				");";
-		String createTransactions = "CREATE TABLE Transactions IF NOT EXISTS\r\n" + 
+		String createTransactions = "CREATE TABLE IF NOT EXISTS Transactions\r\n" + 
 				"(\r\n" + 
 				"    TransactionID int PRIMARY KEY NOT NULL AUTO_INCREMENT,\r\n" + 
 				"    Username VARCHAR(50) NOT NULL,\r\n" + 
 				"    Amount int NOT NULL,\r\n" + 
 				"  FOREIGN KEY (Username) REFERENCES Account(Username)\r\n" + 
 				");";
-		String createBooks = "create table Book if not exists\r\n" + 
+		String createBooks = "create table if not exists Book\r\n" + 
 				"(\r\n" + 
 				"  BookID     int	auto_increment      primary key       not null,\r\n" + 
 				"  ISBN     int	      not null,\r\n" + 
@@ -85,6 +87,25 @@ public class DbManager {
 		}
 		return rs;
 	}
+
+  public ResultSet getBookList () {	// returns all books, (with ISBN, Price, Quantity) in Book as a resultset
+		String sql = "SELECT * FROM Book;";
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ResultSet rs = null;
+		try {
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
 	
 	public ResultSet getBookInfo (String title) {	// returns the specified row, selected by Title, (with ISBN, Price, Quantity) in Book as a resultset
 		String sql = "SELECT * FROM Book WHERE Name LIKE \'" + title +"\';";
