@@ -1,4 +1,4 @@
-
+package support.functions;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -41,12 +41,13 @@ public class CartManager {
 			
 			//Determine quantity currently at the Key
 			int currentQuantity = cart.get(bookID);
-			
+
 			if(rmvQuantity > currentQuantity) {		//case where too much is being asked for removal cancel
 				System.out.println("error - cart didn't have the quantity requested to remove");
 				return false;
 			}
 			else if(rmvQuantity - currentQuantity == 0){	//Case where remove all - can just delete the key
+
 				cart.remove(bookID);
 			}
 			else {
@@ -71,9 +72,11 @@ public class CartManager {
 		//Currently just shows the info on isbn, price
 		String cartInfo = "Cart - \n";
 		
+
 		Set<Integer> keys = cart.keySet();
 		Iterator<Integer> keyIterator = keys.iterator();
 		int tempKey = 0;
+
 		
 		while(keyIterator.hasNext()){
 			tempKey = keyIterator.next();
@@ -93,6 +96,7 @@ public class CartManager {
 		Iterator<Integer> keyIterator = keys.iterator();
 		double total = 0;
 		int tempKey = 0;
+
 		
 		while(keyIterator.hasNext()){
 			tempKey = keyIterator.next();
@@ -105,8 +109,10 @@ public class CartManager {
 	public int getCartSize() {
 		int size = 0;
 		
+
 		Set<Integer> keys = cart.keySet();
 		Iterator<Integer> keyIterator = keys.iterator();
+
 		
 		while(keyIterator.hasNext()){
 			size += cart.get(keyIterator.next());
@@ -122,7 +128,7 @@ public class CartManager {
 		ResultSet query = db.getBookInfo(bookID);
 		return query.getInt("Price");
 		
-		
+
 	}
 	
 }

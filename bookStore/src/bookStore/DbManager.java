@@ -13,11 +13,11 @@ public class DbManager {
 		this.conn = getConnection();
 		try {
 			initializeDB(conn);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	} //
+	}
+
 	
 	private Connection getConnection() {
 		try {
@@ -36,6 +36,7 @@ public class DbManager {
 	}
 	
 	private void initializeDB(Connection conn) throws SQLException { // invoked as part of constructor, don't worry about this (unless it breaks...)
+
 		String createAccount = "CREATE TABLE IF NOT EXISTS Account\r\n" + 
 				"(\r\n" + 
 				"    Username VARCHAR(50) PRIMARY KEY NOT NULL,\r\n" + 
@@ -64,7 +65,7 @@ public class DbManager {
 		Statement stmt1 = conn.createStatement();
 		Statement stmt2 = conn.createStatement();
 		Statement stmt3 = conn.createStatement();
-		stmt1.execute(createBooks);	
+		stmt1.execute(createBooks);
 		stmt2.execute(createAccount);
 		stmt3.execute(createTransactions);
 	}
@@ -87,7 +88,7 @@ public class DbManager {
 		return rs;
 	}
 
-	public ResultSet getBookList () {	// returns all books, (with ISBN, Price, Quantity) in Book as a resultset
+  public ResultSet getBookList () {	// returns all books, (with ISBN, Price, Quantity) in Book as a resultset
 		String sql = "SELECT * FROM Book;";
 		Statement stmt = null;
 		try {
@@ -104,6 +105,7 @@ public class DbManager {
 		}
 		return rs;
 	}
+
 	
 	public ResultSet getBookInfo (String title) {	// returns the specified row, selected by Title, (with ISBN, Price, Quantity) in Book as a resultset
 		String sql = "SELECT * FROM Book WHERE Name LIKE \'" + title +"\';";
