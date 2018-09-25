@@ -35,7 +35,7 @@ public class DbManager {
 	}
 	
 	private void initializeDB(Connection conn) throws SQLException { // invoked as part of constructor, don't worry about this (unless it breaks...)
-		String createAccount = "CREATE TABLE Account IF NOT EXISTS\r\n" + 
+		String createAccount = "CREATE TABLE IF NOT EXISTS Account\r\n" + 
 				"(\r\n" + 
 				"    Username VARCHAR(50) PRIMARY KEY NOT NULL,\r\n" + 
 				"    Password VARCHAR(50) NOT NULL,\r\n" + 
@@ -43,14 +43,14 @@ public class DbManager {
 				"    Address VARCHAR(200) NOT NULL,\r\n" + 
 				"    CreditCard int NOT NULL\r\n" + 
 				");";
-		String createTransactions = "CREATE TABLE Transactions IF NOT EXISTS\r\n" + 
+		String createTransactions = "CREATE TABLE IF NOT EXISTS Transactions\r\n" + 
 				"(\r\n" + 
 				"    TransactionID int PRIMARY KEY NOT NULL AUTO_INCREMENT,\r\n" + 
 				"    Username VARCHAR(50) NOT NULL,\r\n" + 
 				"    Amount int NOT NULL,\r\n" + 
 				"  FOREIGN KEY (Username) REFERENCES Account(Username)\r\n" + 
 				");";
-		String createBooks = "create table Book if not exists\r\n" + 
+		String createBooks = "create table if not exists Book\r\n" + 
 				"(\r\n" + 
 				"  BookID     int	auto_increment      primary key       not null,\r\n" + 
 				"  ISBN     int	      not null,\r\n" + 
