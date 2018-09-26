@@ -14,7 +14,7 @@
 	<h1>Dining Philosophers Bookstore</h1>
 	</header>
 	<%
-		//Shouldnt be able to get here without a cart
+		//Won't be able to get here without a cart
 		bookStore.DbManager db = new bookStore.DbManager();
 		support.functions.CartManager cart = (support.functions.CartManager) session.getAttribute("cart");
 		
@@ -36,7 +36,7 @@
 		}
 		
 		//Send Email
-		SendEmail.send((String)session.getAttribute("user"),"Receipt from Dining Philosophers Bookstore", cart.getCartInfo());
+		support.functions.SendEmail.send((String)session.getAttribute("email"),"Receipt from Dining Philosophers Bookstore", cart.getCartEmailInfo());
 		
 		//If they go back, want to have a new cart
 		session.removeAttribute("cart");
