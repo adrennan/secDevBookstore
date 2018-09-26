@@ -42,11 +42,11 @@
 	<h2>TRANSACTION CONFIRMED</h2>
 	<p>You can expect your books to arrive by 
 	
-
+	//gets current date and adds 3
 	<% Date dt = new Date();
 	Calendar c = Calendar.getInstance(); 
 	c.setTime(dt); 
-	c.add(Calendar.DATE, 3);	//add 3 days to today
+	c.add(Calendar.DATE, 3);	
 	dt = c.getTime();
 	out.println(dt.getMonth() + "-" + dt.getDate());
 	%>
