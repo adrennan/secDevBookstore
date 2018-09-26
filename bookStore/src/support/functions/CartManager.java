@@ -1,4 +1,4 @@
-package support.functions;
+package support.functions
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -64,6 +64,26 @@ public class CartManager{
 	
 	public void emptyCart() {
 		cart.clear();
+	}
+	
+	public String getCartEmailInfo() {
+		//Same as getCartInfo logically but removes the html tags for more email readable format	
+		//Would use the DB for this to get info on pricing and available quantity
+		//Currently just shows the info on isbn, price
+		String cartInfo = "Cart - \n";
+		
+		Set<Integer> keys = cart.keySet();
+		Iterator<Integer> keyIterator = keys.iterator();
+		int tempKey = 0;
+		
+		while(keyIterator.hasNext()){
+			tempKey = keyIterator.next();
+			cartInfo += getItemName(tempKey) + " - $" + getItemPrice(tempKey) + "0   Quantity : " + cart.get(tempKey) + 
+					"   Extended Price : $" + (getItemPrice(tempKey) * cart.get(tempKey)) + "0\n"; 
+		}
+		
+		cartInfo += "\nTotal - $" + getCartTotal();
+		return cartInfo;
 	}
 	
 	public String getCartInfo() {
