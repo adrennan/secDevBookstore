@@ -67,8 +67,7 @@ public class CartManager{
 	}
 	
 	public String getCartEmailInfo() {
-		
-		
+		//Same as getCartInfo logically but removes the html tags for more email readable format	
 		//Would use the DB for this to get info on pricing and available quantity
 		//Currently just shows the info on isbn, price
 		String cartInfo = "Cart - \n";

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%
-		//Shouldnt be able to get here without a cart
+		//Won't be able to get here without a cart
 		bookStore.DbManager db = new bookStore.DbManager();
 		support.functions.CartManager cart = (support.functions.CartManager) session.getAttribute("cart");
 		
