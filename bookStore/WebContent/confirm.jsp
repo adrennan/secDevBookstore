@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.ResultSet" %>
+<%@ page import = "java.util.Date, java.util.Calendar" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,8 +43,18 @@
 		session.removeAttribute("cart");
 		
 	%>
-	<h2>CONFIRMED</h2>
+	<h2>TRANSACTION CONFIRMED</h2>
+	<p>You can expect your books to arrive by 
 	
+	//gets current date and adds 3
+	<% Date dt = new Date();
+	Calendar c = Calendar.getInstance(); 
+	c.setTime(dt); 
+	c.add(Calendar.DATE, 3);	
+	dt = c.getTime();
+	out.println(dt.getMonth() + "-" + dt.getDate());
+	%>
+	</p>
 	
 	<a href = "bookPage.jsp"><button>Browse more Books</button></a><br>
 	<a href = "index.jsp"><button>Log out</button></a>
