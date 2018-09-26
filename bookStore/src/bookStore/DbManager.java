@@ -211,7 +211,7 @@ public class DbManager {
 	}
 	
 	public void addUser(String uname, String pass, String email, String addr, int cc) throws SQLException { // Adds a user, taking parameters for username, password, email, address, and credit card #
-		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Accounts (Username, Password, Email, Address, CreditCard) VALUES (?,?,?,?,?);");
+		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Account (Username, Password, Email, Address, CreditCard) VALUES (?,?,?,?,?);");
 		stmt.setString(1, uname);
 		stmt.setString(2, pass);
 		stmt.setString(3, email);

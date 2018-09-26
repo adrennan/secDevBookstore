@@ -1,16 +1,8 @@
 <%@page import="java.util.HashMap, java.sql.ResultSet" %>
 
 <%
-/*
-<input type="email" name="email" placeholder="email address"><br>
-		<input type="text" name="user" placeholder="username"><br>
-		<input type="password" name ="password" placeholder="password"><br>
-		<input type="number" name = "cc" placeholder="Credit Card Number"><br>
-		<input type="text" name = "address" placeholder="Address" ><br>
-		
-*/
 
-	asd.DbManager db = new asd.DbManager();
+	bookStore.DbManager db = new bookStore.DbManager();
 	String user = "";
 	String password = "";
 	String email = "";
