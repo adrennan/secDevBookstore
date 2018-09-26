@@ -11,16 +11,17 @@
 		<img src="http://placehold.it/280x80" alt="company logo">
 		<h1>Register | Dining Philosophers Bookstore</h1>
 	</header>
-	<form action="index.jsp" method="POST">
-		<input type="email" placeholder="email address"><br>
-		<input type="text" placeholder="username"><br>
-		<input type="password" placeholder="password"><br>
-		<input type="number" placeholder="Credit Card Number"><br>
-		<input type="text" placeholder="Address" ><br>
+
+	<form action="registerUpdate.jsp" method="POST">
+		<input type="email" name="email" placeholder="email address"><br>
+		<input type="text" name="user" placeholder="username"><br>
+		<input type="password" name ="password" placeholder="password"><br>
+		<input type="number" name = "cc" placeholder="Credit Card Number"><br>
+		<input type="text" name = "address" placeholder="Address" ><br>
 		
 		<br>
-		<input type="submit" value="login">
-		
+		<input type="submit" value="Register">
+		<a href = "index.jsp"><button>Back</button></a>
 	</form>
 </body>
 </html>
