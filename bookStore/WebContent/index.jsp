@@ -9,7 +9,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Test Index</title>
+<title>Dining Philosophers Bookstore</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
@@ -17,6 +18,7 @@
 		<img src="https://i.imgur.com/EfK0Hjp.jpg" alt="company logo" style="width:500px;height:300px;">
 		<h1>The Dining Philosophers Bookstore</h1>
 	</header>
+	<br>
 	
 	<section>
 		

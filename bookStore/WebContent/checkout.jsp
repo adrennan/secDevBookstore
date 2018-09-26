@@ -5,8 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Dining Philosophers Bookstore | Checkout</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<header>
+	<h1>Dining Philosophers Bookstore | Checkout</h1>
+	</header>
+	<br>
 	<h2>Please verify your order</h2>
 	
 	<%

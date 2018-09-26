@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Dining Philosophers Bookstore</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<header>
@@ -17,6 +18,7 @@
 		<h4>Hey <%out.println(session.getAttribute("user")); %>, Check out our books</h4>
 		<a href = "index.jsp"><button>Log out</button></a>
 	</header>
+	<br>
 	<hr>
 		<a href="checkout.jsp">
 		<img src="http://www.clker.com/cliparts/1/2/x/X/a/Q/simple-gray-checkout-button-hi.png" height="80px">

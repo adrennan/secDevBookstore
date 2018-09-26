@@ -7,8 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Dining Philosophers Bookstore</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<header>
+	<h1>Dining Philosophers Bookstore</h1>
+	</header>
 	<%
 		//Shouldnt be able to get here without a cart
 		bookStore.DbManager db = new bookStore.DbManager();

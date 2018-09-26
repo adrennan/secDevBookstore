@@ -4,9 +4,7 @@
 
 <%
 
-	bookStore.DbManager db = new bookStore.DbManager();
-	// bookStore.CartUpdate test = new bookStore.CartUpdate();
-	
+	bookStore.DbManager db = new bookStore.DbManager();	
 	String recBookID = request.getParameter("bookID");
 	int bookID = Integer.parseInt(recBookID);
 	String recQuantity = request.getParameter("Quantity");
