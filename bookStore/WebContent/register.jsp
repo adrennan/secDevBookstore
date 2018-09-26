@@ -11,6 +11,7 @@
 		<img src="http://placehold.it/280x80" alt="company logo">
 		<h1>Register | Dining Philosophers Bookstore</h1>
 	</header>
+
 	<form action="registerUpdate.jsp" method="POST">
 		<input type="email" name="email" placeholder="email address"><br>
 		<input type="text" name="user" placeholder="username"><br>

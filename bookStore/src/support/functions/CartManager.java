@@ -1,4 +1,4 @@
-package support.functions
+package support.functions;
 
 import java.util.HashMap;
 import java.util.Iterator;
