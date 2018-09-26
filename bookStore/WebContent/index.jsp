@@ -14,14 +14,15 @@
 <body>
 
 	<header>
-		<img src="http://placehold.it/280x80" alt="company logo">
-		<h1>Change this shit later Bookstore</h1>
+		<img src="https://i.imgur.com/EfK0Hjp.jpg" alt="company logo" style="width:500px;height:300px;">
+		<h1>The Dining Philosophers Bookstore</h1>
 	</header>
 	
 	<section>
 		
 		<%
 		//clean out session info
+		DbManager db = new DbManager();
 		String[] sessAttributes = {"user", "email", "address", "cc", "cart"};
 		for(int i = 0; i < sessAttributes.length; i++){
 			if(session.getAttribute(sessAttributes[i]) != null){
@@ -39,5 +40,6 @@
 		</form>
 		
 		<a href="register.jsp">Register</a>
+		</section>
 </body>
 </html>

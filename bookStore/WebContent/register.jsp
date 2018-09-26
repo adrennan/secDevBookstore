@@ -8,7 +8,7 @@
 </head>
 <body>
 	<header>
-		<img src="http://placehold.it/280x80" alt="company logo">
+		<img src="https://i.imgur.com/EfK0Hjp.jpg" alt="company logo" style="width:500px;height:300px;">
 		<h1>Register | Dining Philosophers Bookstore</h1>
 	</header>
 

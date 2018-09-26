@@ -61,12 +61,23 @@ public class DbManager {
 				"  constraint Book_ISBN_uindex\r\n" + 
 				"  unique (ISBN)\r\n" + 
 				");";
+		String addbook1 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12456, 'Difference & Repetion', 15, 5);";
+		String addbook2 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12345, 'The Order Of Things', 20, 5);";
+		String addbook3 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12856, 'Infinite Jest', 25, 5);";
+		String addbook4 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (23456, 'The Trial', 10, 5);";
+		String addbook5 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12346, 'Psychopolitics', 5, 5);";
 		Statement stmt1 = conn.createStatement();
 		Statement stmt2 = conn.createStatement();
 		Statement stmt3 = conn.createStatement();
+		
 		stmt1.execute(createBooks);	
 		stmt2.execute(createAccount);
 		stmt3.execute(createTransactions);
+		stmt1.execute(addbook1);
+		stmt1.execute(addbook2);
+		stmt1.execute(addbook3);
+		stmt1.execute(addbook4);
+		stmt1.execute(addbook5);
 	}
 	
 	public ResultSet getBookInfo (int bookID) {	// returns the specified row, keyed by BookID, (with ISBN, Price, Quantity) in Book as a resultset
