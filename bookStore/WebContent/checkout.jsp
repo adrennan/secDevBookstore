@@ -15,6 +15,10 @@
 	<h2>Please verify your order</h2>
 	
 	<%
+		if(session.getAttribute("user") == null){	//go back to Login if null
+				response.sendRedirect("index.jsp");
+		}
+		
 		out.println("<p>Account - " + session.getAttribute("user") + "</p>");
 		support.functions.CartManager cart = (support.functions.CartManager) session.getAttribute("cart");
 		if(cart != null){

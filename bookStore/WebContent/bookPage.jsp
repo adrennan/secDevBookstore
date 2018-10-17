@@ -25,6 +25,9 @@
 		</a>
 	<hr>
 	<%
+	if(session.getAttribute("user") == null){	//go back to Login if null
+				response.sendRedirect("index.jsp");
+	}
 	
 	bookStore.DbManager db = new bookStore.DbManager();
 	
