@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 public class CartManager{
 
-	private String uname; 
+	// private String uname; 
 	private HashMap<Integer, Integer> cart;
 	//Cart will have keys as the ISBN as integer values, and the hashmap values will show the current quantity
 	
@@ -25,7 +25,11 @@ public class CartManager{
 	public CartManager() {
 		//Initialize cart
 		cart = new HashMap<>();
-		
+		cart.put(1, 0);
+		cart.put(2, 0);
+		cart.put(3, 0);
+		cart.put(4, 0);
+		cart.put(5, 0);
 	}
 	
 	

@@ -53,7 +53,7 @@ public class DbManager {
 				");";
 		String createBooks = "create table if not exists Book\r\n" + 
 				"(\r\n" + 
-				"  BookID     int	auto_increment      primary key       not null,\r\n" + 
+				"  BookID     int      primary key       not null,\r\n" + 
 				"  ISBN     int	      not null,\r\n" + 
 				"  Name     varchar(100)    not null,\r\n" + 
 				"  Price    int             not null,\r\n" + 
@@ -61,11 +61,11 @@ public class DbManager {
 				"  constraint Book_ISBN_uindex\r\n" + 
 				"  unique (ISBN)\r\n" + 
 				");";
-		String addbook1 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12456, 'Difference & Repetion', 15, 5);";
-		String addbook2 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12345, 'The Order Of Things', 20, 5);";
-		String addbook3 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12856, 'Infinite Jest', 25, 5);";
-		String addbook4 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (23456, 'The Trial', 10, 5);";
-		String addbook5 = "INSERT IGNORE INTO Book (ISBN, Name, Price, Quantity) VALUES (12346, 'Psychopolitics', 5, 5);";
+		String addbook1 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (1, 12456, 'Difference & Repetion', 15, 5);";
+		String addbook2 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (2, 12345, 'The Order Of Things', 20, 5);";
+		String addbook3 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (3, 12856, 'Infinite Jest', 25, 5);";
+		String addbook4 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (4, 23456, 'The Trial', 10, 5);";
+		String addbook5 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (5, 12346, 'Psychopolitics', 5, 5);";
 		Statement stmt1 = conn.createStatement();
 		Statement stmt2 = conn.createStatement();
 		Statement stmt3 = conn.createStatement();
@@ -135,7 +135,7 @@ public class DbManager {
 	}
 	
 	public void updateBookQty(int bookID, int newQuantity) {
-		String sql = "UPDATE `bookstore`.`book` SET `Quantity` = '" + newQuantity + "' WHERE (`BookID` = '" + bookID +"')";
+		String sql = "UPDATE `bookstore`.`Book` SET `Quantity` = '" + newQuantity + "' WHERE (`BookID` = '" + bookID +"')";
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(sql);
