@@ -20,7 +20,7 @@
 			
 	
 		//Shouldnt be able to get here without a cart
-			support.functions.DbManager db = new support.functions.DbManager();
+			bookStore.DbManager db = new bookStore.DbManager();
 			support.functions.CartManager cart = (support.functions.CartManager) session.getAttribute("cart");
 			
 			//add transaction to DB
@@ -30,14 +30,14 @@
 			
 			
 			//update book info
-			int[] bookIDs = cart.getBooksIDList();
+			// int[] bookIDs = cart.getBooksIDList();
 			ResultSet query = null;
 			int currentQty = 0;
-			for(int i = 0; i < bookIDs.length; i++){
-		query = db.getBookInfo(bookIDs[i]);
-		query.first();
-		currentQty = query.getInt("Quantity");
-		db.updateBookQty(bookIDs[i], (currentQty - cart.getQty(bookIDs[i])));
+			for(int i = 1; i < 6; i++){
+				query = db.getBookInfo(i);
+				query.first();
+				currentQty = query.getInt("Quantity");
+				db.updateBookQty(i, (currentQty - cart.getQty(i)));
 			}
 			
 			//Send Email
