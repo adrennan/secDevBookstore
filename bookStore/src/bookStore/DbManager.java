@@ -81,16 +81,25 @@ public class DbManager {
 	}
 	
 	public ResultSet getBookInfo (int bookID) {	// returns the specified row, keyed by BookID, (with ISBN, Price, Quantity) in Book as a resultset
-		String sql = "SELECT * FROM Book WHERE BookID =" + bookID +";";
-		Statement stmt = null;
+		// String sql = "SELECT * FROM Book WHERE BookID =" + bookID +";";
+		PreparedStatement stmt = null;
 		try {
-			stmt = conn.createStatement();
+			stmt = conn.prepareStatement("SELECT * FROM Book WHERE BookID = ?;");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			stmt.setInt(1, bookID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ResultSet rs = null;
 		try {
-			rs = stmt.executeQuery(sql);
+		rs = stmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,16 +126,25 @@ public class DbManager {
 	}
 	
 	public ResultSet getBookInfo (String title) {	// returns the specified row, selected by Title, (with ISBN, Price, Quantity) in Book as a resultset
-		String sql = "SELECT * FROM Book WHERE Name LIKE \'" + title +"\';";
-		Statement stmt = null;
+		// String sql = "SELECT * FROM Book WHERE Name LIKE \'" + title +"\';";
+		PreparedStatement stmt = null;
 		try {
-			stmt = conn.createStatement();
+			stmt = conn.prepareStatement("SELECT * FROM Book WHERE Name LIKE ?;");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			stmt.setString(1, title);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ResultSet rs = null;
 		try {
-			rs = stmt.executeQuery(sql);
+		rs = stmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -135,31 +153,54 @@ public class DbManager {
 	}
 	
 	public void updateBookQty(int bookID, int newQuantity) {
-		String sql = "UPDATE `bookstore`.`Book` SET `Quantity` = '" + newQuantity + "' WHERE (`BookID` = '" + bookID +"')";
+		// String sql = "UPDATE `bookstore`.`Book` SET `Quantity` = '" + newQuantity + "' WHERE (`BookID` = '" + bookID +"')";
+		
 		PreparedStatement stmt = null;
 		try {
-			stmt = conn.prepareStatement(sql);
-			//stmt.setInt(4, newQuantity);
-			
-			stmt.executeUpdate();
-			System.out.println("New record inserted into Book.");
+			stmt = conn.prepareStatement("UPDATE bookstore.Book SET Quantity = ? WHERE (BookID = ?);");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			stmt.setInt(1, newQuantity);
+			stmt.setInt(2, bookID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
 	public ResultSet getTransactionInfo(int transactionID) { // returns as a ResultSet the specified row, keyed by TransactionID, (with Username and Amount) in Transactions
-		String sql = "SELECT * FROM Transactions WHERE TransactionID =" + transactionID +";";
-		Statement stmt = null;
+		// String sql = "SELECT * FROM Transactions WHERE TransactionID =" + transactionID +";";
+		
+		PreparedStatement stmt = null;
 		try {
-			stmt = conn.createStatement();
+			stmt = conn.prepareStatement("SELECT * FROM Transactions WHERE TransactionID = ?;");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			stmt.setInt(1, transactionID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ResultSet rs = null;
 		try {
-			rs = stmt.executeQuery(sql);
+		rs = stmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -168,16 +209,26 @@ public class DbManager {
 	}
 	
 	public ResultSet getTransactionInfo(String user) { // returns as a ResultSet the specified row, keyed by Username, (with TransactionID and Amount) in Transactions
-		String sql = "SELECT * FROM Transactions WHERE Username = \'" + user +"\';";
-		Statement stmt = null;
+		// String sql = "SELECT * FROM Transactions WHERE Username = \'" + user +"\';";
+		
+		PreparedStatement stmt = null;
 		try {
-			stmt = conn.createStatement();
+			stmt = conn.prepareStatement("SELECT * FROM Transactions WHERE Username = ?;");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			stmt.setString(1, user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ResultSet rs = null;
 		try {
-			rs = stmt.executeQuery(sql);
+		rs = stmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -186,16 +237,26 @@ public class DbManager {
 	}
 	
 	public ResultSet getUserInfo(String user) { // returns as a ResultSet the specified row, keyed by username, in Account
-		String sql = "SELECT * FROM Account WHERE Username = \'" + user +"\';";
-		Statement stmt = null;
+		// String sql = "SELECT * FROM Account WHERE Username = \'" + user +"\';";
+		
+		PreparedStatement stmt = null;
 		try {
-			stmt = conn.createStatement();
+			stmt = conn.prepareStatement("SELECT * FROM Account WHERE Username = ?;");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			stmt.setString(1, user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ResultSet rs = null;
 		try {
-			rs = stmt.executeQuery(sql);
+		rs = stmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
