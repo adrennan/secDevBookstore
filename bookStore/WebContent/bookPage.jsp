@@ -15,7 +15,9 @@
 	<header>
 		<img src="https://i.imgur.com/EfK0Hjp.jpg" alt="company logo" style="width:500px;height:300px;">
 		<h1>Dining Philosophers Bookstore</h1>
-		<h4>Hey <%out.println(session.getAttribute("user")); %>, Check out our books</h4>
+		
+		<%String escaped = support.functions.CartManager.escapeHtml((String)session.getAttribute("user")); %>
+		<h4>Hey <%out.println(escaped);%>, Check out our books</h4>
 		<a href = "index.jsp"><button>Log out</button></a>
 	</header>
 	<br>

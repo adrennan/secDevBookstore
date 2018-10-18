@@ -22,7 +22,8 @@
 		
 		<br>
 		<input type="submit" value="Register">
-		<a href = "index.jsp"><button>Back</button></a>
 	</form>
+	
+	<a href = "index.jsp"><button>Back</button></a>
 </body>
 </html>

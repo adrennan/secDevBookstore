@@ -21,6 +21,7 @@
 	
 	//Check if user already there
 	ResultSet checkDb = db.getUserInfo(user);
+	
 	if(checkDb.first()){
 		//if finds someone, do not add. return
 		response.sendRedirect("register.jsp");
