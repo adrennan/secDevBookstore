@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+
 
 public class DbManager {
 	private Connection conn;
@@ -39,10 +44,10 @@ public class DbManager {
 		String createAccount = "CREATE TABLE IF NOT EXISTS Account\r\n" + 
 				"(\r\n" + 
 				"    Username VARCHAR(50) PRIMARY KEY NOT NULL,\r\n" + 
-				"    Password VARCHAR(50) NOT NULL,\r\n" + 
+				"    Password VARCHAR(64) NOT NULL,\r\n" + 
 				"    Email VARCHAR(50) NOT NULL,\r\n" + 
 				"    Address VARCHAR(200) NOT NULL,\r\n" + 
-				"    CreditCard int NOT NULL\r\n" + 
+				"    CreditCard VARCHAR(64) NOT NULL\r\n" + 
 				");";
 		String createTransactions = "CREATE TABLE IF NOT EXISTS Transactions\r\n" + 
 				"(\r\n" + 
@@ -282,18 +287,24 @@ public class DbManager {
 		System.out.println("New record inserted into Book.");
 	}
 	
-	public void addUser(String uname, String pass, String email, String addr, int cc) throws SQLException { // Adds a user, taking parameters for username, password, email, address, and credit card #
+	public void addUser(String uname, String pass, String email, String addr, String cc) throws SQLException, NoSuchAlgorithmException { // Adds a user, taking parameters for username, password, email, address, and credit card #
 		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Account (Username, Password, Email, Address, CreditCard) VALUES (?,?,?,?,?);");
 		stmt.setString(1, uname);
-		stmt.setString(2, pass);
+		stmt.setString(2, hash(pass));
 		stmt.setString(3, email);
 		stmt.setString(4, addr);
-		stmt.setInt(5, cc);
+		stmt.setString(5, hash(cc));
 		
 		stmt.executeUpdate();
 		System.out.println("New record inserted into Account.");
 	}
-	
+	public String hash(String plaintext) throws NoSuchAlgorithmException {
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		md.update(plaintext.getBytes());
+		byte[] digest = md.digest();
+		String out = String.format("%064x", new BigInteger(1, digest));
+		return out;
+	}
 	public void addTransaction(String uname, int amt) throws SQLException { // Adds a transaction, taking username and amount as parameters
 		PreparedStatement stmt = conn.prepareStatement("INSERT INTO Transactions (Username, Amount) VALUES (?,?);");
 		stmt.setString(1, uname);
