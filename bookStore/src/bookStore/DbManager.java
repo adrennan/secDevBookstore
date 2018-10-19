@@ -41,6 +41,7 @@ public class DbManager {
 	}
 	
 	private void initializeDB(Connection conn) throws SQLException { // invoked as part of constructor, don't worry about this (unless it breaks...)
+		String createDB = "CREATE SCHEMA IF NOT EXISTS bookstore;";
 		String createAccount = "CREATE TABLE IF NOT EXISTS Account\r\n" + 
 				"(\r\n" + 
 				"    Username VARCHAR(50) PRIMARY KEY NOT NULL,\r\n" + 
@@ -71,10 +72,12 @@ public class DbManager {
 		String addbook3 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (3, 12856, 'Infinite Jest', 25, 5);";
 		String addbook4 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (4, 23456, 'The Trial', 10, 5);";
 		String addbook5 = "INSERT IGNORE INTO Book (BookID, ISBN, Name, Price, Quantity) VALUES (5, 12346, 'Psychopolitics', 5, 5);";
+		Statement base = conn.createStatement();
 		Statement stmt1 = conn.createStatement();
 		Statement stmt2 = conn.createStatement();
 		Statement stmt3 = conn.createStatement();
 		
+		base.execute(createDB);
 		stmt1.execute(createBooks);	
 		stmt2.execute(createAccount);
 		stmt3.execute(createTransactions);
