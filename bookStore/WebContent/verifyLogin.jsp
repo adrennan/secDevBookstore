@@ -8,7 +8,8 @@ You came to the wrong neighborhood, kid
 	
 	
 	String recUser = request.getParameter("user");
-	String recPass = request.getParameter("password");
+	String recRealPass = request.getParameter("password");
+	String hashPass = db.hash(recRealPass);
 	
 	
 	ResultSet dbUser = db.getUserInfo(recUser);
@@ -23,7 +24,7 @@ You came to the wrong neighborhood, kid
 		user = dbUser.getString("Username");
 		pass = dbUser.getString("Password");
 		
-		if((user.equals(recUser)) && (pass.equals(recPass))){	//check password vs DB
+		if((user.equals(recUser)) && (pass.equals(hashPass))){	//check password vs DB
 			response.sendRedirect("bookPage.jsp");
 			String[] sessAttributes = {"user", "email", "address", "cc"};
 			
@@ -31,7 +32,7 @@ You came to the wrong neighborhood, kid
 			session.setAttribute("user", user);
 			session.setAttribute("email", dbUser.getString("Email"));
 			session.setAttribute("address", dbUser.getString("Address"));
-			session.setAttribute("cc", dbUser.getInt("CreditCard"));
+			session.setAttribute("cc", dbUser.getString("CreditCard"));
 		}
 		else{		//on wrong password return to login
 			response.sendRedirect("index.jsp");
